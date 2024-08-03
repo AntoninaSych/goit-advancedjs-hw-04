@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Search App</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/vanilla-app-template/assets/index-4b1c6985.css">
+</head>
+<body>
+<header>
+  <h1>Image Search App</h1>
+  <form id="search-form">
+    <input type="text" name="searchQuery" placeholder="Search images..." autocomplete="off" />
+    <button type="submit">Search</button>
+  </form>
+</header>
+
+<main>
+  <div class="loader hidden">Loading images, please wait...</div>
+  <div class="gallery"></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.7.0/simple-lightbox.min.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>
