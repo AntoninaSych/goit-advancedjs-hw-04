@@ -5,16 +5,16 @@ import iziToast from 'izitoast';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import $ from 'jquery';
 
-var API_KEY = '45260330-4aac6e6a6c993f9154e4b36c5';
+const API_KEY = '45260330-4aac6e6a6c993f9154e4b36c5';
 
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('search-form');
-  var loader = document.getElementById('loader');
-  var gallery = document.querySelector('.gallery');
+  const form = document.getElementById('search-form');
+  const loader = document.getElementById('loader');
+  const gallery = document.querySelector('.gallery');
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-    var query = form.querySelector('input[name="searchQuery"]').value.trim();
+    const query = form.querySelector('input[name="searchQuery"]').value.trim();
 
     if (query === '') {
       iziToast.error({
@@ -28,8 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loader.classList.remove('hidden'); // Показать спиннер
     gallery.innerHTML = ''; // Очистить галерею
 
-    var API_KEY = '45260330-4aac6e6a6c993f9154e4b36c5';
-    var URL = "https://pixabay.com/api/?key=" + API_KEY + "&q=" + encodeURIComponent(query) + "&image_type=photo&orientation=horizontal&safesearch=true&per_page=12&page=1";
+    const URL = `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(query)}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12&page=1`;
 
     fetch(URL)
       .then(response => response.json())
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loader.classList.add('hidden'); // Скрыть спиннер
         if (data.totalHits > 0) {
           data.hits.forEach(hit => {
-            var photoCard = document.createElement('div');
+            const photoCard = document.createElement('div');
             photoCard.className = 'photo-card';
             photoCard.innerHTML = `
               <a href="${hit.largeImageURL}" class="gallery-link">
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             gallery.appendChild(photoCard);
           });
-          var lightbox = new SimpleLightbox('.gallery a');
+          const lightbox = new SimpleLightbox('.gallery a');
           lightbox.refresh();
         } else {
           iziToast.error({
@@ -72,6 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
           position: 'topRight',
           timeout: 5000
         });
+      })
+      .finally(() => {
+        form.reset(); // Сбросить форму, очистить все поля
       });
   });
 });
