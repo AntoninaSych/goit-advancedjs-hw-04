@@ -1,7 +1,8 @@
 import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
+import iziToast from 'izitoast';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import 'izitoast/dist/js/iziToast.min.js';
+
 import $ from 'jquery';
 
 var API_KEY = '45260330-4aac6e6a6c993f9154e4b36c5';
@@ -44,10 +45,17 @@ $(document).ready(function() {
         var lightbox = new SimpleLightbox('.gallery a');
         lightbox.refresh();
       } else {
-        iziToast.error({
-          title: 'Error',
-          message: 'Sorry, there are no images matching your search query. Please try again!'
-        });
+        if (parseInt(data.totalHits) > 0) {
+          // Отображение найденных изображений
+        } else {
+          iziToast.error({
+            title: 'Error',
+            message: 'Sorry, there are no images matching your search query. Please try again!',
+            position: 'topRight',
+            timeout: 5000
+          });
+        }
+
       }
     }).fail(function(jqxhr, textStatus, error) {
       $('.loader').addClass('hidden');
