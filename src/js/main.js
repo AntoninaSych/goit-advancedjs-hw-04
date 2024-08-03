@@ -1,3 +1,9 @@
+import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'izitoast/dist/js/iziToast.min.js';
+import $ from 'jquery';
+
 var API_KEY = '45260330-4aac6e6a6c993f9154e4b36c5';
 
 $(document).ready(function() {
@@ -13,12 +19,12 @@ $(document).ready(function() {
     }
 
     $('.gallery').empty();
-    $('.loader').removeClass('hidden');  // Показать индикатор загрузки
+    $('.loader').removeClass('hidden');
 
     var URL = "https://pixabay.com/api/?key=" + API_KEY + "&q=" + encodeURIComponent(query) + "&image_type=photo&orientation=horizontal&safesearch=true&per_page=12&page=1";
 
     $.getJSON(URL, function(data) {
-      $('.loader').addClass('hidden');  // Скрыть индикатор загрузки
+      $('.loader').addClass('hidden');
       if (parseInt(data.totalHits) > 0) {
         $.each(data.hits, function(i, hit) {
           $('.gallery').append(
@@ -35,8 +41,7 @@ $(document).ready(function() {
             '</div>'
           );
         });
-        // Инициализация или обновление SimpleLightbox
-        var lightbox = new SimpleLightbox('.gallery a', { /* опции */ });
+        var lightbox = new SimpleLightbox('.gallery a');
         lightbox.refresh();
       } else {
         iziToast.error({
@@ -45,7 +50,7 @@ $(document).ready(function() {
         });
       }
     }).fail(function(jqxhr, textStatus, error) {
-      $('.loader').addClass('hidden');  // Скрыть индикатор загрузки
+      $('.loader').addClass('hidden');
       var err = textStatus + ", " + error;
       console.log("Request Failed: " + err);
       iziToast.error({
