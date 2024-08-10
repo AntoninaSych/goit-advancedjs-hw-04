@@ -43,7 +43,6 @@ export function renderGallery(images) {
     lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
   }
 }
-
 export function showLoader() {
   document.querySelector('.loader').classList.remove('hidden');
 }
@@ -51,6 +50,7 @@ export function showLoader() {
 export function hideLoader() {
   document.querySelector('.loader').classList.add('hidden');
 }
+
 
 export function showError(message) {
   iziToast.error({

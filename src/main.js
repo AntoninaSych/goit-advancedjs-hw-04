@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    showLoader();
-    resetPage(); // Сбрасываем страницу до начального значения
+    showLoader(); // Показать спиннер
+    resetPage(); // Сброс страницы до начального значения
     gallery.innerHTML = '';
     loadMoreBtn.style.display = 'none'; // Скрываем кнопку перед новым поиском
 
     try {
       const data = await fetchImages(query);
-      hideLoader();
+      hideLoader(); // Скрыть спиннер
 
       if (data.totalHits > 0) {
         renderGallery(data.hits);
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showError('Sorry, there are no images matching your search query. Please try again!');
       }
     } catch (error) {
-      hideLoader();
+      hideLoader(); // Скрыть спиннер
       showError('An error occurred while fetching images.');
     } finally {
       form.reset();
@@ -43,25 +43,26 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   loadMoreBtn.addEventListener('click', async function() {
-    incrementPage(); // Увеличиваем номер страницы
-    showLoader();
+    loadMoreBtn.style.display = 'none'; // Скрыть кнопку
+    showLoader(); // Показать спиннер
 
     try {
-      const data = await fetchImages(getCurrentQuery(), getCurrentPage()); // Используем текущие query и page
-      hideLoader();
+      const data = await fetchImages(getCurrentQuery(), getCurrentPage());
+      hideLoader(); // Скрыть спиннер
+      loadMoreBtn.style.display = 'block'; // Вернуть кнопку
       renderGallery(data.hits);
 
-      // Вычисляем общее количество страниц
       const totalPages = Math.ceil(500 / 15); // totalHits ограничено 500
 
-      // Если достигли последней страницы, скрываем кнопку "Load more"
       if (getCurrentPage() >= totalPages) {
         loadMoreBtn.style.display = 'none';
         showError("We're sorry, but you've reached the end of search results.");
       }
     } catch (error) {
-      hideLoader();
+      hideLoader(); // Скрыть спиннер
+      loadMoreBtn.style.display = 'block'; // Вернуть кнопку в случае ошибки
       showError('An error occurred while fetching more images.');
     }
   });
+
 });
