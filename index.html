@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Search App</title>
-  <link rel="icon" href="/goit-advancedjs-hw-03/assets/favicon-79abed68.ico" type="image/x-icon">
+  <link rel="icon" href="/goit-advancedjs-hw-04/assets/favicon-79abed68.ico" type="image/x-icon">
   
-  <script type="module" crossorigin src="/goit-advancedjs-hw-03/commonHelpers.js"></script>
-  <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-0fc460d7.js">
-  <link rel="stylesheet" href="/goit-advancedjs-hw-03/assets/vendor-4b066c51.css">
-  <link rel="stylesheet" href="/goit-advancedjs-hw-03/assets/index-5a55438e.css">
+  <script type="module" crossorigin src="/goit-advancedjs-hw-04/commonHelpers.js"></script>
+  <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-04/assets/vendor-576dab23.js">
+  <link rel="stylesheet" href="/goit-advancedjs-hw-04/assets/vendor-4b066c51.css">
+  <link rel="stylesheet" href="/goit-advancedjs-hw-04/assets/index-d496290f.css">
 </head>
 <body>
 <header>
@@ -21,12 +21,16 @@
 </header>
 
 <main>
-  <div id="loader" class="loader hidden">
-    <div class="lds-dual-ring"></div>
-  </div>
-
   <div class="gallery"></div>
+  <div class="load-more-container">
+    <div id="loader" class="loader hidden">
+      <div class="lds-dual-ring"></div>
+    </div>
+    <button class="load-more hidden">Load more</button>
+  </div>
 </main>
+
+
 
 
 </body>
